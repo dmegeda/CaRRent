@@ -1,0 +1,41 @@
+﻿<Window x:Class="CaRRent.PL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaRRent.PL"
+        mc:Ignorable="d"
+        Title="MainWindow" MinHeight="500" MinWidth="800" WindowStartupLocation="CenterScreen" Icon="/icon.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="117*"/>
+            <ColumnDefinition Width="283*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MaxHeight="75px"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding CurrentPage}" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Frame x:Name="mainFrame" Content="" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <Menu x:Name="NavigationMenu" MaxHeight="100" FontSize="18" FontWeight="DemiBold" Grid.ColumnSpan="2">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+            <MenuItem x:Name="ToHomePage" Header="HOME" Grid.Column="0" Click="ToHomePage_Click">
+            </MenuItem>
+            <MenuItem x:Name="ToAuthPage" Header="AUTH" Grid.Column="1" Click="ToAuthPage_Click"/>
+            <MenuItem x:Name="ToUserRentals" Header="YOUR RENTALS" Grid.Column="2" Click="ToUserRentals_Click"/>
+            <MenuItem x:Name="ToStatisticPage" Header="STATISTIC" Grid.Column="3" Click="ToStatisticPage_Click"/>
+        </Menu>
+    </Grid>
+</Window>

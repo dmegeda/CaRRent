@@ -1,0 +1,37 @@
+﻿<Page x:Class="CaRRent.PL.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CaRRent.PL.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="HomePage">
+
+    <Grid Background="#FFB6B6B6">
+        <DataGrid x:Name="carsDataGrid" HorizontalAlignment="Center" MinHeight="500" FontSize="16" 
+                  Margin="0,70,0,0" VerticalAlignment="Stretch" AutoGenerateColumns="False"
+                  CanUserAddRows="False" CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path = Id}" 
+                                    IsReadOnly="True" Header="ID" Width="70"/>
+                <DataGridTextColumn Binding="{Binding Path = Brand.Name}" 
+                                    IsReadOnly="True" Header="Brand" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = Model}" 
+                                    IsReadOnly="True" Header="Model" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = RentPrice}" 
+                                    IsReadOnly="True" Header="Rent price (USD)" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path = IsAvailable}" 
+                                    IsReadOnly="True" Header="Available" Width="*"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="RentCarBtn" Click="RentCarBtn_Click" MinWidth="100">Rent</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" FontSize="20" FontWeight="DemiBold" Text="CARS LIST" TextWrapping="Wrap" VerticalAlignment="Top"/>
+    </Grid>
+</Page>
