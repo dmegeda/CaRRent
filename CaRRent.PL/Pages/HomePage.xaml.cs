@@ -17,35 +17,37 @@ using System.Windows.Shapes;
 
 namespace CaRRent.PL.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для HomePage.xaml
-    /// </summary>
     public partial class HomePage : Page
     {
         public HomePage()
         {
             InitializeComponent();
-            CarDTO car = new CarDTO()
-            {
-                Id = 1,
-                Brand = new CarBrandDTO() { Id = 1, Name = "Porsche" },
-                Model = "Cayenne",
-                IsAvailable = true,
-                Price = 120000,
-                RentPrice = 1000
-            };
-            carsDataGrid.ItemsSource = new List<CarDTO>() { car };       
-        }
 
-        public void RentCar(int Id)
-        {
-            MessageBox.Show("" + Id);
+            CarBrandDTO porsche = new CarBrandDTO() { Name = "Porsche" };
+            CarBrandDTO audi = new CarBrandDTO() { Name = "Audi" };
+
+            CarDTO cayenne = new CarDTO() { Id = 1, Model = "Cayenne GTS", Brand = porsche, 
+                RentPrice = 1500, IsAvailable = true };
+            CarDTO turbo911 = new CarDTO() { Id = 2, Model = "911 Turbo", Brand = porsche, 
+                RentPrice = 2200, IsAvailable = false };
+            CarDTO rsq8 = new CarDTO() { Id = 3, Model = "RSQ8", Brand = audi, 
+                RentPrice = 1300, IsAvailable = true
+            };
+
+            carsDataGrid.ItemsSource = new List<CarDTO>() { cayenne, turbo911, rsq8 };       
         }
 
         private void RentCarBtn_Click(object sender, RoutedEventArgs e)
         {
             CarDTO car = (CarDTO)((Button)e.Source).DataContext;
-            MessageBox.Show($"Your car: {car.Brand.Name} {car.Model}");
+            if (car.IsAvailable)
+            {
+                MessageBox.Show($"Your car: {car.Brand.Name} {car.Model}");
+            }
+            else
+            {
+                MessageBox.Show("Sorry, this car is unavailable(");
+            }
         }
     }
 }

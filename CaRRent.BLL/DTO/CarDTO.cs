@@ -14,5 +14,10 @@ namespace CaRRent.BLL.DTO
         public decimal RentPrice { get; set; }
         public bool IsAvailable { get; set; }
         public CarBrandDTO Brand { get; set; }
+
+        public override string ToString()
+        {
+            return Brand.Name + " " + Model;
+        }
     }
 }

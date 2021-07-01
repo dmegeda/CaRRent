@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace CaRRent.PL.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для UserRentalsPage.xaml
-    /// </summary>
     public partial class UserRentalsPage : Page
     {
         public UserRentalsPage()

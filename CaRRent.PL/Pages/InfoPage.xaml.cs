@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace CaRRent.PL.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для InfoPage.xaml
-    /// </summary>
     public partial class InfoPage : Page
     {
         public InfoPage()
