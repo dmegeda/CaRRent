@@ -9,19 +9,60 @@
       Title="AuthPage">
 
     <Grid Background="#FFB6B6B6">
+
+        <Grid.Resources>
+            <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2"/>
+                                <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                    <TextBox.Style>
+                                        <Style TargetType="{x:Type TextBox}">
+                                            <Setter Property="Foreground" Value="Transparent"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                    <Setter Property="Foreground" Value="LightGray"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                </TextBox>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MinWidth="350"/>
             <ColumnDefinition Width="*" MinWidth="350"/>
         </Grid.ColumnDefinitions>
+        
         <TextBlock HorizontalAlignment="Center" Margin="0,35,0,0" Text="LOGIN" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.395,0.298"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,35,0,0" Text="REGISTER" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.395,0.298" Grid.Column="1"/>
-        <TextBox x:Name="userNameTb" Margin="65,93,65,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="200"/>
-        <TextBox x:Name="passwordTb" Margin="65,165,65,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="200"/>
-        <TextBox x:Name="registerUserNameTb" Margin="65,93,65,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" Background="White"/>
-        <TextBox x:Name="registerPasswordTb" Margin="65,165,65,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" RenderTransformOrigin="0.5,-1.201"/>
+        <TextBox x:Name="userNameTb" Style="{StaticResource placeHolder}" Tag="Username" Margin="65,93,65,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" MaxWidth="200"/>
+        <TextBox x:Name="passwordTb" Style="{StaticResource placeHolder}" Tag="Password" Margin="65,165,65,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" MaxWidth="200"/>
+        <TextBox x:Name="registerUserNameTb" Style="{StaticResource placeHolder}" Tag="Username" Margin="65,93,65,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" Background="White"/>
+        <TextBox x:Name="registerPasswordTb" Style="{StaticResource placeHolder}" Tag="Password" Margin="65,165,65,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" RenderTransformOrigin="0.5,-1.201" Cursor="IBeam"/>
+        <TextBox x:Name="confirmRegisterPasswordTb" Style="{StaticResource placeHolder}" Tag="Confirm password" Margin="65,236,65,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" RenderTransformOrigin="0.509,-0.937"/>
         <Button x:Name="LoginBtn" Content="LOGIN" Margin="100,369,100,0" VerticalAlignment="Top" Height="35" MaxWidth="200" Click="LoginBtn_Click"/>
-        <Button x:Name="RegisterBtn" Content="REGISTER" Margin="100,369,100,0" VerticalAlignment="Top" Height="35" Grid.Column="1" MaxWidth="200" Click="RegisterBtn_Click"/>
+        <Button x:Name="RegisterBtn" Content="REGISTER" Margin="100,369,100,0" VerticalAlignment="Top" Height="35" Grid.Column="1" MaxWidth="200" 
+                Click="RegisterBtn_Click"/>
         <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Height="293" Margin="0,60,0,0" VerticalAlignment="Top" Width="5" Background="#FF838383"/>
-        <TextBox x:Name="confirmRegisterPasswordTb" Margin="65,236,65,0" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" MaxWidth="200" RenderTransformOrigin="0.509,-0.937"/>
+        
     </Grid>
 </Page>
